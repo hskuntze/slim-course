@@ -68,6 +68,10 @@
         return new App\Controllers\UserController($container);
     };
 
+    $container['PostController'] = function($container){
+        return new App\Controllers\PostController($container);
+    };
+
     $container['upload_directory'] = __DIR__ . '/../public/uploads';
 
     $app->add(new App\Middleware\DisplayInputErrorsMiddleware($container));
