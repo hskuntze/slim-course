@@ -64,7 +64,12 @@
         return new App\Controllers\AuthController($container);
     };
 
-    
+    $container['UserController'] = function($container){
+        return new App\Controllers\UserController($container);
+    };
+
+    $container['upload_directory'] = __DIR__ . '/../public/uploads';
+
     $app->add(new App\Middleware\DisplayInputErrorsMiddleware($container));
 
     require __DIR__ . '/routes.php';
