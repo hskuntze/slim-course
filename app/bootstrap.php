@@ -36,6 +36,10 @@
             $container->request->getUri()
         ));
         $view->getEnvironment()->addGlobal('flash', $container->flash);
+        $view->getEnvironment()->addGlobal('auth', [
+            'check' => $container->auth->check(),
+            'user' => $container->auth->user()
+        ]);
         return $view;
     };
 
@@ -45,6 +49,10 @@
 
     $container['flash'] = function($container){
         return new Slim\Flash\Messages;
+    };
+
+    $container['auth'] = function($container){
+        return new App\Auth\Auth($container);
     };
 
     //No array criamos uma chave, e como valor da chave passamos uma função
